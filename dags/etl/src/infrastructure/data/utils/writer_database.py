@@ -1,4 +1,4 @@
-"""Módulo que gerencia a carga em banco de dados, utilizando o Pyspark."""
+"""Módulo que gerencia a carga em banco de dados, utilizando o Pandas."""
 
 from pandas import DataFrame
 from sqlalchemy import text
