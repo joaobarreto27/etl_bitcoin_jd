@@ -1,0 +1,63 @@
+name: CI Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Baixar código
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # histórico completo para merge e branch check
+
+      # 2️⃣ Configurar identidade git para merge check
+      - name: Setup git user
+        run: |
+          git config user.name "CI Bot"
+          git config user.email "ci-bot@example.com"
+
+      # 3️⃣ Verificar conflitos de merge
+      - name: Check merge conflicts
+        run: |
+          git fetch origin main
+          git checkout ${{ github.head_ref }}
+          git merge --no-commit --no-ff origin/main || (echo "Merge conflict detected!" && exit 1)
+
+      # 4️⃣ Configurar Python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      # 5️⃣ Instalar Poetry
+      - name: Install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      # 6️⃣ Cache de dependências
+      - name: Cache poetry & pre-commit
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pypoetry
+            ~/.cache/pip
+            ~/.cache/pre-commit
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      # 7️⃣ Instalar dependências do projeto
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      # 8️⃣ Rodar pre-commit (inclui Ruff, Black, Mypy, Bandit, hooks de Git e commit-msg)
+      - name: Run pre-commit
+        run: poetry run pre-commit run --all-files
