@@ -1,5 +1,7 @@
 """Módulo que gerencia a carga em banco de dados, utilizando o Pandas."""
 
+from typing import Optional
+
 from pandas import DataFrame
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
@@ -8,14 +10,24 @@ from sqlalchemy.engine import Engine
 class DatabaseWriter:
     """Gerencia a carga em banco de dados com Spark."""
 
-    def __init__(self, engine: Engine) -> None:
+    def __init__(self, engine: Engine, truncate_type: Optional[bool] = False) -> None:
         """Inicializa o escritor de banco de dados.
+
+        Inicializa o DatabaseWriter com o engine SQLAlchemy e a opção de truncar
+        a tabela antes da inserção dos dados.
 
         Args:
             engine (Engine): Instância do engine SQLAlchemy para conexão com o banco.
+            truncate_type (Optional[bool], optional): Se True, a tabela alvo será
+                truncada antes de inserir os dados. Defaults to False.
+
+        Attributes:
+            engine (Engine): Engine SQLAlchemy usado para executar comandos.
+            truncate_type (Optional[bool]): Flag que indica se deve truncar a tabela
+                antes de inserir dados.
         """
         self.engine: Engine = engine
-        self.truncate_type: bool = False
+        self.truncate_type = truncate_type
 
     def truncate_data(self, table_name: str) -> None:
         """Executa o comando TRUNCATE na tabela especificada.
