@@ -17,10 +17,10 @@ class ConnectionDatabase:
 
     def __init__(
         self,
+        sgbd_name: str,
         environment: str,
         db_name: str,
         base: Optional[type[DeclarativeBase]] = None,
-        sgbd_name: str = "postgresql",
         connection_folder: str = "databases_connection",
     ) -> None:
         """Inicializa uma instância de ConnectionDatabase.
@@ -29,13 +29,12 @@ class ConnectionDatabase:
         de dados usando SQLAlchemy (ou sqlite quando aplicável).
 
         Args:
+            sgbd_name (str, optional): Identificador do SGBD a ser usado na
+                connection string (ex.: "postgresql", "sqlite").
             environment (str): Nome do ambiente (ex.: "dev", "prod", "test").
             db_name (str): Nome do banco de dados ou arquivo de banco (para sqlite).
             base (Optional[object], optional): Base declarativa do SQLAlchemy usada
                 para criação de tabelas/mapeamentos. Defaults to None.
-            sgbd_name (str, optional): Identificador do SGBD a ser usado na
-                connection string (ex.: "postgresql", "sqlite").
-                Defaults to "postgresql".
             connection_folder (str, optional): Pasta onde ficam os arquivos de
                 configuração/connection string. Defaults to "databases_connection".
 
