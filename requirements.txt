@@ -1,0 +1,15 @@
+pre-commit>=4.3.0,<5.0.0
+isort>=7.0.0,<8.0.0
+pip-audit>=2.9.0,<3.0.0
+taskipy>=1.14.1,<2.0.0
+black>=25.9.0,<26.0.0
+python-dotenv>=1.1.1,<2.0.0
+ruff>=0.14.1,<0.15.0
+requests>=2.32.5,<3.0.0
+types-requests>=2.32.4.20250913,<3.0.0.0
+pydantic>=2.12.3,<3.0.0
+pandas==2.1.4
+pandas-stubs==2.1.4.231227
+mypy>=1.18.2,<2.0.0
+psycopg2>=2.9.11,<3.0.0
+psycopg2-binary>=2.9.11,<3.0.0
