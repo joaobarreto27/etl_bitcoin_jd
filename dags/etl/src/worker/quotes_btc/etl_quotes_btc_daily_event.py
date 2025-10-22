@@ -20,7 +20,7 @@ def main() -> None:
 
     connection = ConnectionDatabase(
         sgbd_name="sqlite" if USE_SQLITE else "postgresql",
-        environment="dev" if USE_SQLITE else "dev",
+        environment="prd" if USE_SQLITE else "prd",
         db_name=("etl_bitcoin_jd" if USE_SQLITE else "etl_bitcoin_jd"),
     )
 
