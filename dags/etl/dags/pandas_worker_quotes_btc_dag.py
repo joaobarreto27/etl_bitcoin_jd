@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(__file__)
 with DAG(
     dag_id="pandas_worker_quotes_btc_dag",
     start_date=datetime(2025, 10, 19),
-    schedule="*/3 * * * *",
+    schedule="*/15 * * * *",
     catchup=False,
     tags=["quotes_btc"],
 ) as dag:
