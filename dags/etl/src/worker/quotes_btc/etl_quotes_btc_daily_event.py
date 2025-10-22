@@ -36,7 +36,7 @@ def main() -> None:
     command = QuotesBtcDailyEventCommandRepository(
         service=service,
         connection=connection,
-        engine=engine,  # type:ignore
+        engine=engine,
         table_name="quotes_btc_daily_event",
     )
 

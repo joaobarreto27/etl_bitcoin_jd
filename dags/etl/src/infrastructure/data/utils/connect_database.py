@@ -3,13 +3,15 @@
 import sqlite3
 import time
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Type
 
 from dotenv import dotenv_values
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.exc import OperationalError
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
+
+Base = declarative_base()
 
 
 class ConnectionDatabase:
@@ -20,7 +22,7 @@ class ConnectionDatabase:
         sgbd_name: str,
         environment: str,
         db_name: str,
-        base: Optional[type[DeclarativeBase]] = None,
+        base: Optional[Type[DeclarativeMeta]] = None,
         connection_folder: str = "databases_connection",
     ) -> None:
         """Inicializa uma instância de ConnectionDatabase.
@@ -59,10 +61,10 @@ class ConnectionDatabase:
         self.path_file: Optional[Path] = None
         self.path: Optional[Path] = None
         self.sqlite_conn: Optional[sqlite3.Connection] = None
-        self.base = base
+        self.base = base if base is not None else Base
         self.engine: Optional[Engine] = None
 
-    def initialize_engine(self) -> Optional[Engine]:
+    def initialize_engine(self) -> Engine:
         """Cria a URL de conexão com SqlAlchemy."""
         self.current_dir = Path(__file__).resolve().parent
         self.path = self.current_dir.parent.joinpath(

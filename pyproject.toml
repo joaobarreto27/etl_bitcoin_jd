@@ -1,35 +1,36 @@
-[project]
-name = "etl-bitcoin-jd"
+[tool.poetry]
+name = "infrastructure"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "joaobarreto27",email = "joao.vito1951@gmail.com"}
-]
+authors = ["joaobarreto27 <joao.vito1951@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.11, <3.12"
-dependencies = [
-    "pre-commit (>=4.3.0,<5.0.0)",
-    "isort (>=7.0.0,<8.0.0)",
-    "pip-audit (>=2.9.0,<3.0.0)",
-    "taskipy (>=1.14.1,<2.0.0)",
-    "black (>=25.9.0,<26.0.0)",
-    "python-dotenv (>=1.1.1,<2.0.0)",
-    "ruff (>=0.14.1,<0.15.0)",
-    "requests (>=2.32.5,<3.0.0)",
-    "types-requests (>=2.32.4.20250913,<3.0.0.0)",
-    "pydantic (>=2.12.3,<3.0.0)",
-    "pandas (>=2.3.3,<3.0.0)",
-    "pandas-stubs (>=2.3.2.250926,<3.0.0.0)",
-    "mypy (>=1.18.2,<2.0.0)",
-    "sqlalchemy (>=2.0.44,<3.0.0)",
-    "psycopg2 (>=2.9.11,<3.0.0)"
+packages = [
+    { include = "infrastructure", from = "dags/etl/src" },
+    { include = "worker", from = "dags/etl/src" }
 ]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+pre-commit = ">=4.3.0,<5.0.0"
+isort = ">=7.0.0,<8.0.0"
+pip-audit = ">=2.9.0,<3.0.0"
+taskipy = ">=1.14.1,<2.0.0"
+black = ">=25.9.0,<26.0.0"
+python-dotenv = ">=1.1.1,<2.0.0"
+ruff = ">=0.14.1,<0.15.0"
+requests = ">=2.32.5,<3.0.0"
+types-requests = ">=2.32.4.20250913,<3.0.0.0"
+pydantic = ">=2.12.3,<3.0.0"
+mypy = ">=1.18.2,<2.0.0"
+psycopg2 = ">=2.9.11,<3.0.0"
+psycopg2-binary = ">=2.9.11,<3.0.0"
+sqlalchemy = ">=2.0.44,<3.0.0"
+pandas = "==2.1.4"
+pandas-stubs = "==2.1.4.231227"
+
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-[tool.ruff.lint]
-ignore = ["D203", "D213"]
 
 
 [build-system]
@@ -47,18 +48,9 @@ docs = "mkdocs serve"
 docs-deploy = "mkdocs gh-deploy --clean"
 commit = "poetry run pre-commit run --all-files"
 
-[tool.mypy]
-files = ["src"]
-mypy_path = ["dags/etl/src"]
-explicit_package_bases = true
-
-[tool.ruff]
+[tool.ruff.lint]
 select = ["E", "F", "B", "I"]
-fix = true
-
-[tool.ruff.lint.isort]
-combine-as-imports = true
-known-first-party = ["infrastructure", "worker"]
+ignore = ["D203", "D213"]
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.3.0"
