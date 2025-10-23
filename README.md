@@ -28,11 +28,11 @@ O Airflow agenda as execuções de ETL, que fazem:
 
 ## 🛠️ Tecnologias Utilizadas
 
-![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Docker](https://img.shields.io/badge/Docker-Engine-blue)
 ![Airflow](https://img.shields.io/badge/Apache%20Airflow-2.8-green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
-![Pandas](https://img.shields.io/badge/Pandas-2.2.2-green)
+![Pandas](https://img.shields.io/badge/Pandas-2.1.4-green)
 ![Requests](https://img.shields.io/badge/Requests-HTTP-blue)
 
 ---
