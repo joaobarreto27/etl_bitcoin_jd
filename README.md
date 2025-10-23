@@ -80,12 +80,8 @@ cd etl-bitcoin-airflow
 Crie um arquivo `.env` na raiz do projeto com o conteúdo:
 
 ```env
-# Banco de Dados
-POSTGRES_DB=bitcoin_db
-POSTGRES_USER=admin
-POSTGRES_PASSWORD=admin
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
+AIRFLOW_UID=50000
+AIRFLOW_GID=0
 ```
 
 ---
