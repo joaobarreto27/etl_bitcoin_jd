@@ -70,7 +70,7 @@ Certifique-se de ter instalado:
 ### 1️⃣ Clone o repositório
 ```bash
 git clone https://github.com/joaobarreto27/etl_bitcoin_jd
-cd etl-bitcoin-airflow
+cd etl-bitcoin
 ```
 
 ---
