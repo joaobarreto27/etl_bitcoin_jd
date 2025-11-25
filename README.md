@@ -70,18 +70,18 @@ Certifique-se de ter instalado:
 ### 1️⃣ Clone o repositório
 ```bash
 git clone https://github.com/joaobarreto27/etl_bitcoin_jd
-cd etl-bitcoin-airflow
+cd etl_bitcoin_jd
 ```
 
 ---
 
 ### 2️⃣ Configure as variáveis de ambiente
 
-Crie um arquivo `.env` na raiz do projeto com o conteúdo:
+Crie um arquivo `.env` na raiz do projeto com o conteúdo, com o seguindo comando abaixo:
 
 ```env
-AIRFLOW_UID=50000
-AIRFLOW_GID=0
+echo "AIRFLOW_UID=50000" > .env
+echo "AIRFLOW_GID=0" >> .env
 ```
 
 ---
@@ -92,7 +92,7 @@ AIRFLOW_GID=0
 # 1️⃣ Buildar tudo (sem cache):
 docker-compose build --no-cache
 
-# 2️⃣ Subit somente o cotainer init:
+# 2️⃣ Subir somente o cotainer init:
 docker-compose up airflow-init
 
 # 3️⃣ Subir todo o restante do ambiente ambiente:
