@@ -92,7 +92,7 @@ echo "AIRFLOW_GID=0" >> .env
 # 1️⃣ Buildar tudo (sem cache):
 docker-compose build --no-cache
 
-# 2️⃣ Subit somente o cotainer init:
+# 2️⃣ Subir somente o cotainer init:
 docker-compose up airflow-init
 
 # 3️⃣ Subir todo o restante do ambiente ambiente:
