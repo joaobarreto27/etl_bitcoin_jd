@@ -89,13 +89,10 @@ echo "AIRFLOW_GID=0" >> .env
 ### 3️⃣ Inicie o ambiente Docker
 
 ```bash
-# 1️⃣ Buildar tudo (sem cache):
-docker-compose build --no-cache
-
-# 2️⃣ Subir somente o cotainer init:
+# 1️⃣ Subir somente o cotainer init:
 docker-compose up airflow-init
 
-# 3️⃣ Subir todo o restante do ambiente ambiente:
+# 2️⃣ Subir todo o restante do ambiente ambiente:
 docker-compose up -d
 ```
 
@@ -222,7 +219,7 @@ connection = ConnectionDatabaseSpark(
 
 👤 **João Vitor**  
 💼 Engenheiro de Dados  
-📧 [joaovitor@email.com](mailto:joao.vito1951@gmail.com)  
+📧 [Email](mailto:joao.vito1951@gmail.com)  
 🐙 [GitHub](https://github.com/joaobarreto27)  
 🔗 [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-vitor-barreto-495a6a222/)
 
